@@ -46,17 +46,14 @@ class ImageSelectionField extends OptionsetField
     protected $imageList = null;
 
     /**
-     * This function is used by the template processor. If you refer to a field as a $ variable, it
-     * will return the $Field value.
-     *
-     * @return string
+     * @inheritdoc
      */
-    public function forTemplate()
+    public function Field($properties = [])
     {
         Requirements::css(
             "nswdpc/silverstripe-imageselection-field:client/static/styles/field.css"
         );
-        return parent::forTemplate();
+        return parent::Field($properties);
     }
 
     /**
