@@ -1,7 +1,11 @@
 /**
- * ImageSelectionField
- * Purpose: provide files for the ImageSelectionField
+ * Default CSS for imageselection field
  */
+.imageselection ul {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1em;
+}
 
 .imageselection > * > * > label {
   display : block;
@@ -9,7 +13,6 @@
   padding : 0;
   cursor: pointer;
   border : none;
-  height : 100%;
 }
 
 .imageselection > * > * > label > .image {
@@ -18,11 +21,15 @@
 
 .imageselection > * > * > label > .image > img {
   display: block;
-  max-width: 100%;
-  height: auto;
   margin : 0;
   padding : 0;
   background-color: transparent;
   pointer-events: none;
   border : none;
+}
+
+.imageselection > * > * > label > .image .title {
+  font-size: 90%;
+  margin: 0;
+  padding: 0.25em;
 }
