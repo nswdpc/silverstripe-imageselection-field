@@ -1,0 +1,28 @@
+/**
+ * ImageSelectionField
+ * Purpose: provide files for the ImageSelectionField
+ */
+
+.imageselection > * > * > label {
+  display : block;
+  margin : 0;
+  padding : 0;
+  cursor: pointer;
+  border : none;
+  height : 100%;
+}
+
+.imageselection > * > * > label > .image {
+  overflow: hidden;
+}
+
+.imageselection > * > * > label > .image > img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin : 0;
+  padding : 0;
+  background-color: transparent;
+  pointer-events: none;
+  border : none;
+}

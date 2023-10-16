@@ -1,0 +1,32 @@
+{
+    "name": "nswdpc/silverstripe-imageselection-field",
+    "description": "Image selection field for Silverstripe.",
+    "type": "silverstripe-vendormodule",
+    "keywords": [
+        "silverstripe",
+        "nsw",
+        "image",
+        "field",
+        "form",
+        "select image"
+    ],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "James",
+            "homepage": "https://dpc.nsw.gov.au"
+        }
+    ],
+    "require": {
+        "silverstripe/framework" : "^4.13.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "friendsofphp/php-cs-fixer": "^3"
+    },
+    "extra": {
+        "expose": [
+            "client/static"
+        ]
+    }
+}

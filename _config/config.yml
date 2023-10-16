@@ -1,0 +1,6 @@
+---
+Name: nswdpc-imageselection-field
+---
+NSWDPC\Forms\ImageSelectionField\ImageSelectionField:
+  default_thumb_width: 150
+  default_thumb_height: 120
