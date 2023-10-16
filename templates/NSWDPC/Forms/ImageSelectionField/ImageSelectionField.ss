@@ -1,6 +1,5 @@
 <% if $Options %>
 <div {$AttributesHTML}>
-foo
   <ul class="grid grid-simple-3">
     <% loop $Options %>
         <li>
