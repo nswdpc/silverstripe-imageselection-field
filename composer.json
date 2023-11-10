@@ -28,5 +28,13 @@
         "expose": [
             "client/static"
         ]
+    },
+    "autoload": {
+      "psr-4": {
+        "NSWDPC\\Forms\\ImageSelectionField\\": [
+            "src/Forms/"
+        ],
+        "NSWDPC\\Forms\\ImageSelectionField\\Tests\\": "tests/"
+      }
     }
 }
