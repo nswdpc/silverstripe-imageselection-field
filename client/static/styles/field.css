@@ -3,43 +3,62 @@
  */
 .imageselection ul {
   display: flex;
-  flex-flow: row wrap;
-  gap: 1em;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin: 0 !important;
+  padding: 0;
 }
 
-.imageselection > * > * > label {
+.imageselection ul li {
+  position: relative;
+  margin: 1rem 0 0 0;
+  outline: 1px solid #333;
+}
+
+.imageselection ul li label {
   display : block;
   margin : 0;
   padding : 0;
   cursor: pointer;
   border : none;
-  position: relative;
-}
-
-.imageselection > * > * > label > input[type=radio] {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  padding: 0;
-  margin: 0;
-  transform: scale(2);
-}
-
-.imageselection > * > * > label > .image {
   overflow: hidden;
 }
 
-.imageselection > * > * > label > .image > img {
+.imageselection ul li input[type=radio] {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: block;
+  margin: 0;
+  padding: 0;
+  transform: scale(2);
+}
+
+.imageselection ul li label .image {
+  overflow: hidden;
+  max-width: 200px;
+}
+
+.imageselection ul li label .image img {
   display: block;
   margin : 0;
   padding : 0;
-  background-color: transparent;
+  object-fit: cover;
   pointer-events: none;
   border : none;
 }
 
-.imageselection > * > * > label > .image .title {
+.imageselection ul li label .image .title {
   font-size: 90%;
   margin: 0;
-  padding: 0.25em;
+  padding: 0.5rem;
+  word-break: break-all;
+}
+
+/* list specifics */
+.imageselection ol li,
+.imageselection ul li {
+  list-style-type: none;
 }
