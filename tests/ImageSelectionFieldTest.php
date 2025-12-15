@@ -22,6 +22,7 @@ class ImageSelectionFieldTest extends SapphireTest
 
     protected static $fixture_file = 'ImageSelectionFieldTest.yml';
 
+    #[\Override]
     public function setUp() : void {
         parent::setUp();
 
@@ -34,13 +35,14 @@ class ImageSelectionFieldTest extends SapphireTest
         }
     }
 
+    #[\Override]
     public function tearDown() : void
     {
         TestAssetStore::reset();
         parent::tearDown();
     }
 
-    public function testImageSelectionField() {
+    public function testImageSelectionField(): void {
 
         SSViewer::set_themes(['$public', '$default']);
 

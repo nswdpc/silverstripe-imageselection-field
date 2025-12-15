@@ -16,14 +16,8 @@ use SilverStripe\View\Requirements;
 class ImageSelectionField extends OptionsetField
 {
 
-    /**
-     * @var int
-     */
     private static int $default_thumb_width = 150;
 
-    /**
-     * @var int
-     */
     private static int $default_thumb_height = 120;
 
     /**
@@ -45,6 +39,7 @@ class ImageSelectionField extends OptionsetField
     /**
      * @inheritdoc
      */
+    #[\Override]
     public function Field($properties = [])
     {
         Requirements::css(
@@ -74,9 +69,10 @@ class ImageSelectionField extends OptionsetField
      */
     public function Image($id) : ?Image {
         $image = null;
-        if($this->imageList) {
+        if($this->imageList instanceof \SilverStripe\ORM\DataList) {
             $image = $this->imageList->byId($id);
         }
+
         return ($image instanceof Image) ? $image : null;
     }
 
@@ -85,7 +81,7 @@ class ImageSelectionField extends OptionsetField
      * This is used in templates e.g {$Thumbnail($Value)}
      */
     public function Thumbnail($id) : ?AssetContainer {
-        if($image = $this->Image($id)) {
+        if(($image = $this->Image($id)) instanceof \SilverStripe\Assets\Image) {
             return $image->Fill( $this->getImageWidth(), $this->getImageHeight() );
         } else {
             return null;
@@ -125,6 +121,7 @@ class ImageSelectionField extends OptionsetField
         if(!is_int($width) || $width <= 0) {
             $width = 150;
         }
+
         return $width;
     }
 
@@ -136,6 +133,7 @@ class ImageSelectionField extends OptionsetField
         if(!is_int($height) || $height <= 0) {
             $height = 120;
         }
+
         return $height;
     }
 }
