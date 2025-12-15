@@ -2,7 +2,6 @@
 
 namespace NSWDPC\Forms\ImageSelectionField;
 
-use SilverStripe\Forms\FormField;
 use SilverStripe\Forms\OptionsetField;
 use SilverStripe\ORM\DataList;
 use SilverStripe\Assets\Image;
@@ -15,7 +14,6 @@ use SilverStripe\View\Requirements;
  */
 class ImageSelectionField extends OptionsetField
 {
-
     private static int $default_thumb_width = 150;
 
     private static int $default_thumb_height = 120;
@@ -51,15 +49,17 @@ class ImageSelectionField extends OptionsetField
     /**
      * Sets the image list for use, and set the source map for the field based on this list
      */
-    public function setImageList(DataList $imageList, string $mapTitle = "Title") : self {
+    public function setImageList(DataList $imageList, string $mapTitle = "Title"): self
+    {
         $this->imageList = $imageList;
-        return parent::setSource( $this->imageList->map("ID", $mapTitle) );
+        return parent::setSource($this->imageList->map("ID", $mapTitle));
     }
 
     /**
      * Return images set
      */
-    public function Images() : ?DataList {
+    public function Images(): ?DataList
+    {
         return $this->imageList;
     }
 
@@ -67,9 +67,10 @@ class ImageSelectionField extends OptionsetField
      * Based on the ID value, return the Image record from the imageList array
      * This is used in templates e.g {$Image($Value)}
      */
-    public function Image($id) : ?Image {
+    public function Image($id): ?Image
+    {
         $image = null;
-        if($this->imageList instanceof \SilverStripe\ORM\DataList) {
+        if ($this->imageList instanceof \SilverStripe\ORM\DataList) {
             $image = $this->imageList->byId($id);
         }
 
@@ -80,9 +81,10 @@ class ImageSelectionField extends OptionsetField
      * Based on the ID value, return a thumbnail of the image record
      * This is used in templates e.g {$Thumbnail($Value)}
      */
-    public function Thumbnail($id) : ?AssetContainer {
-        if(($image = $this->Image($id)) instanceof \SilverStripe\Assets\Image) {
-            return $image->Fill( $this->getImageWidth(), $this->getImageHeight() );
+    public function Thumbnail($id): ?AssetContainer
+    {
+        if (($image = $this->Image($id)) instanceof \SilverStripe\Assets\Image) {
+            return $image->Fill($this->getImageWidth(), $this->getImageHeight());
         } else {
             return null;
         }
@@ -91,7 +93,8 @@ class ImageSelectionField extends OptionsetField
     /**
      * Set a specific thumbnail width
      */
-    public function setImageWidth(int $width) : self {
+    public function setImageWidth(int $width): self
+    {
         $this->imageWidth = abs($width);
         return $this;
     }
@@ -99,7 +102,8 @@ class ImageSelectionField extends OptionsetField
     /**
      * Set a specific thumbnail height
      */
-    public function setImageHeight(int $height) : self {
+    public function setImageHeight(int $height): self
+    {
         $this->imageHeight = abs($height);
         return $this;
     }
@@ -107,7 +111,8 @@ class ImageSelectionField extends OptionsetField
     /**
      * Set a specific thumbnail dimension
      */
-    public function setImageDimensions(int $width, int $height) : self {
+    public function setImageDimensions(int $width, int $height): self
+    {
         $this->imageWidth = abs($width);
         $this->imageHeight = abs($height);
         return $this;
@@ -116,9 +121,10 @@ class ImageSelectionField extends OptionsetField
     /**
      * Return image width to use for thumbnailing
      */
-    public function getImageWidth() : int {
+    public function getImageWidth(): int
+    {
         $width =  $this->imageWidth > 0 ? $this->imageWidth : self::config()->get('default_thumb_width');
-        if(!is_int($width) || $width <= 0) {
+        if (!is_int($width) || $width <= 0) {
             $width = 150;
         }
 
@@ -128,9 +134,10 @@ class ImageSelectionField extends OptionsetField
     /**
      * Return image height to use for thumbnailing
      */
-    public function getImageHeight() : int {
+    public function getImageHeight(): int
+    {
         $height = $this->imageHeight > 0 ? $this->imageHeight : self::config()->get('default_thumb_height');
-        if(!is_int($height) || $height <= 0) {
+        if (!is_int($height) || $height <= 0) {
             $height = 120;
         }
 

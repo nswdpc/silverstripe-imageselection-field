@@ -17,13 +17,13 @@ use SilverStripe\View\SSViewer;
  */
 class ImageSelectionFieldTest extends SapphireTest
 {
-
     protected $usesDatabase = true;
 
     protected static $fixture_file = 'ImageSelectionFieldTest.yml';
 
     #[\Override]
-    public function setUp() : void {
+    public function setUp(): void
+    {
         parent::setUp();
 
         TestAssetStore::activate('imageselectionfield');
@@ -36,13 +36,14 @@ class ImageSelectionFieldTest extends SapphireTest
     }
 
     #[\Override]
-    public function tearDown() : void
+    public function tearDown(): void
     {
         TestAssetStore::reset();
         parent::tearDown();
     }
 
-    public function testImageSelectionField(): void {
+    public function testImageSelectionField(): void
+    {
 
         SSViewer::set_themes(['$public', '$default']);
 
@@ -71,7 +72,7 @@ class ImageSelectionFieldTest extends SapphireTest
         $dom = new \DOMDocument();
         $dom->loadHTML($html);
 
-        foreach($imageCheck as $image) {
+        foreach ($imageCheck as $image) {
             /** @var \SilverStripe\Assets\Image $fieldImage */
             $fieldImage = $field->Thumbnail($image->ID);
             $this->assertEquals($field->getImageWidth(), $fieldImage->getWidth());
@@ -86,8 +87,8 @@ class ImageSelectionFieldTest extends SapphireTest
             $parentNode = $inputElement->parentNode;
             $this->assertInstanceOf(\DOMElement::class, $parentNode);
             $imageElement = $parentNode ->getElementsByTagName('img')[0];
-            $this->assertEquals( $field->getImageWidth(), $imageElement->getAttribute('width'));
-            $this->assertEquals( $field->getImageHeight(), $imageElement->getAttribute('height'));
+            $this->assertEquals($field->getImageWidth(), $imageElement->getAttribute('width'));
+            $this->assertEquals($field->getImageHeight(), $imageElement->getAttribute('height'));
 
         }
 
