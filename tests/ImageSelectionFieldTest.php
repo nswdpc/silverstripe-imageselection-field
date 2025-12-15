@@ -5,7 +5,7 @@ namespace NSWDPC\Forms\ImageSelectionField\Tests;
 use NSWDPC\Forms\ImageSelectionField\ImageSelectionField;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Dev\SapphireTest;
-use Silverstripe\Assets\Dev\TestAssetStore;
+use SilverStripe\Assets\Dev\TestAssetStore;
 use SilverStripe\Assets\File;
 use SilverStripe\Assets\Folder;
 use SilverStripe\Assets\Image;
@@ -70,6 +70,7 @@ class ImageSelectionFieldTest extends SapphireTest
         $dom->loadHTML($html);
 
         foreach($imageCheck as $image) {
+            /** @var \SilverStripe\Assets\Image $fieldImage */
             $fieldImage = $field->Thumbnail($image->ID);
             $this->assertEquals($field->getImageWidth(), $fieldImage->getWidth());
             $this->assertEquals($field->getImageHeight(), $fieldImage->getHeight());
@@ -80,7 +81,9 @@ class ImageSelectionFieldTest extends SapphireTest
             $inputValue = $inputElement->getAttribute('value');
             $this->assertEquals($inputValue, $image->ID);
 
-            $imageElement = $inputElement->parentNode->getElementsByTagName('img')[0];
+            $parentNode = $inputElement->parentNode;
+            $this->assertInstanceOf(\DOMElement::class, $parentNode);
+            $imageElement = $parentNode ->getElementsByTagName('img')[0];
             $this->assertEquals( $field->getImageWidth(), $imageElement->getAttribute('width'));
             $this->assertEquals( $field->getImageHeight(), $imageElement->getAttribute('height'));
 

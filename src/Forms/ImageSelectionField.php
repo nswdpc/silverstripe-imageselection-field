@@ -19,31 +19,28 @@ class ImageSelectionField extends OptionsetField
     /**
      * @var int
      */
-    private static $default_thumb_width = 150;
+    private static int $default_thumb_width = 150;
 
     /**
      * @var int
      */
-    private static $default_thumb_height = 120;
+    private static int $default_thumb_height = 120;
 
     /**
      * Image width
-     * @var int|null
      */
-    protected $imageWidth = null;
+    protected ?int $imageWidth = null;
 
     /**
      * Image height
-     * @var int|null
      */
-    protected $imageHeight = null;
+    protected ?int $imageHeight = null;
 
 
     /**
      * List of images for this field
-     * @var DataList|null
      */
-    protected $imageList = null;
+    protected ?DataList $imageList = null;
 
     /**
      * @inheritdoc
@@ -124,9 +121,9 @@ class ImageSelectionField extends OptionsetField
      * Return image width to use for thumbnailing
      */
     public function getImageWidth() : int {
-        $width =  $this->imageWidth ?? self::config()->get('default_thumb_width');
-        if(!is_int($width)) {
-            $width = static::$default_thumb_width;
+        $width =  $this->imageWidth > 0 ? $this->imageWidth : self::config()->get('default_thumb_width');
+        if(!is_int($width) || $width <= 0) {
+            $width = 150;
         }
         return $width;
     }
@@ -135,9 +132,9 @@ class ImageSelectionField extends OptionsetField
      * Return image height to use for thumbnailing
      */
     public function getImageHeight() : int {
-        $height = $this->imageHeight ?? self::config()->get('default_thumb_height');
-        if(!is_int($height)) {
-            $height = static::$default_thumb_width;
+        $height = $this->imageHeight > 0 ? $this->imageHeight : self::config()->get('default_thumb_height');
+        if(!is_int($height) || $height <= 0) {
+            $height = 120;
         }
         return $height;
     }
