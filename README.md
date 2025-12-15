@@ -4,7 +4,7 @@ This is a basic radio selection field, each item in the set of options can have 
 
 Useful for allowing people to select an option based on an image uploaded to the file library.
 
-### Usage
+## Usage
 
 ```php
 $imageList = $app->getImageList();// DataList of Image records
@@ -25,9 +25,15 @@ $sampleImageField = ImageSelectionField::create(
 ->setImageDimensions($width, $height);
 ```
 
-The module provides a stylesheet using an example flexbox layout. You will almost definitely want to use your own stylesheet, so use `Requirements::block` to block loading of the field.css stylesheet and then require your own stylesheet in your project.
+The module provides a stylesheet using an example flexbox layout.
+
+### Styling and templating
+
+You will almost definitely want to use your own stylesheet, so use `Requirements::block` to block loading of the field.css stylesheet and then require your own stylesheet in your project.
 
 To include your own template, override it in your project or theme in the usual Silverstripe way using the same file path, then flush cache.
+
+[More information](./docs/en/001_index.md).
 
 ## Template methods
 
@@ -55,7 +61,7 @@ You can set the default image width/height in your project configuration
 
 ## Maintainers
 
-+ [dpcdigital@NSWDPC:~$](https://dpc.nsw.gov.au)
++ PD Web Team
 
 ## Bugtracker
 
